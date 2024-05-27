@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: regional_rhale.aux
+The style file: elsarticle-num-names.bst
+Database file #1: regional_rhale.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 2 entries,
+            2918 wiz_defined-function locations,
+            634 strings with 5457 characters,
+and the built_in function-call counts, 1488 in all, are:
+= -- 105
+> -- 62
+< -- 1
++ -- 23
+- -- 21
+* -- 161
+:= -- 212
+add.period$ -- 2
+call.type$ -- 2
+change.case$ -- 17
+chr.to.int$ -- 2
+cite$ -- 2
+duplicate$ -- 112
+empty$ -- 108
+format.name$ -- 27
+if$ -- 277
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 19
+newline$ -- 25
+num.names$ -- 8
+pop$ -- 43
+preamble$ -- 1
+purify$ -- 17
+quote$ -- 0
+skip$ -- 37
+stack$ -- 0
+substring$ -- 56
+swap$ -- 76
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 18
+warning$ -- 0
+while$ -- 9
+width$ -- 0
+write$ -- 42
