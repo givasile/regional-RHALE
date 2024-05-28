@@ -87,7 +87,7 @@ twocolumn,
 \begin{abstract}
   The regional effect is a novel explainability method for extracting insights from tabular data through a three-step procedure; a black-box machine learning model is trained on a tabular dataset, a regional effect method explains it and the explanations are used to understand the data and and support decision making.
   Regional effect methods explain the effect of each feature on the ouptput within different subgroups, such as how the age (feature) affects the annual income (output) for men and women separately (subgroups). Identifying meaningful subgroups is computationally intensive, and current regional effect methods face efficiency challenges.
-In this paper, we present rRHALE (regional RHALE), a nover regional effect method designed for enhanced efficiency, making it particularly suitable for decision-making scenarios involving large datasets, i.e., with numerous instances or high dimensionality, and complex models such as deep neural networks. Beyond its efficiency advantages, rRHALE effectively manages cases with highly correlated features. We showcase the benefits of rRHALE through a series of synthetic examples, benchmarking it against other regional effect methods. The accompanying code for this publication is available.
+In this paper, we present regional RHALE (r-RHALE), a nover regional effect method designed for enhanced efficiency, making it particularly suitable for decision-making scenarios involving large datasets, i.e., with numerous instances or high dimensionality, and complex models such as deep neural networks. Beyond its efficiency, r-RHALE handles accurately tabular datasets with highly correlated features. We showcase the benefits of r-RHALE through a series of synthetic examples, benchmarking it against other regional effect methods. The accompanying code for the paper is publicly available.
 \end{abstract}
 
 %%
@@ -110,20 +110,20 @@ In this paper, we present rRHALE (regional RHALE), a nover regional effect metho
 \section{Introduction}
 \label{sec:introduction}
 
-Recently, there has been significant progress in Machine Learning (ML) for tabular data, with models capable of learning data patterns and performing tasks like prediction. However, most of these models function as black boxes, meaning their internal workings are not transparent. To address this, eXplainable AI (XAI) has emerged to explain how these models operate. Combining ML with XAI offers a promising approach for data analysis. As illustrated in Figure~\ref{fig:concept_figure}, we can analyze a tabular dataset by explaining a black-box model that is trained on it.
+Recently, there has been significant progress in Machine Learning (ML) for tabular data, with models capable of learning complex data patterns. Most of these models function as black boxes, meaning their internal workings are not transparent. To address this, eXplainable AI (XAI) has emerged to explain how these models operate. Combining ML with XAI offers a promising approach for data analysis. As illustrated in Figure~\ref{fig:concept_figure}, we can analyze a tabular dataset by explaining a black-box model that is trained on it.
 
 To understand the concept, consider the bike-sharing dataset~\cite{fanaee2014event}. It includes features like temperature, humidity, hour, working/non-working day, and the target variable is the hourly bike-rentals. Suppose a data scientist is hired to analyze this data and help the bike shop owner decide on promotional offers.
 
-The data scientist fits a neural network to the dataset. Then, applies a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to understand the impact of specific features on the output. The analysis shows that the feature hour is crucial for bike rentals but varies between working days and weekends. On working days (Figure~\ref{subfig:regional_a}), bike rentals spike around 8:30 AM and 5:00 PM, corresponding to commuting times. On weekends (Figure~\ref{subfig:regional_b}), rentals rise from 9:00 AM, peak at 12:00 PM, and decline at 4:00 PM, reflecting typical sightseeing patterns. This approach can be applied to other features as well.
+The data scientist fits a neural network to the dataset. Then, applies a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to understand the impact of specific features on the output. The analysis shows that the feature hour is crucial for bike rentals but varies between working days and weekends. On working days (Figure~\ref{subfig:regional_a}), bike rentals spike around 8:30 AM and 5:00 PM because people mainly rent bikes to transport to their work. In contrast, on weekends (Figure~\ref{subfig:regional_b}), rentals rise from 9:00 AM, peak at 12:00 PM, and decline at 4:00 PM, because people mainly rent bikes for sightseeing. 
 
-Based on this analysis, the data scientist advises the bike shop owner to implement different promotional offers for working days and weekends.
+Based on this analysis, the data scientist advises the bike shop owner to implement promotional offers on differnt hours for working days and weekends. The same analysis can be applied to other features as well.
 
-Unlike global effect methods that provide a single plot per feature (Figure~\ref{subfig:global}), regional effect methods automatically identify meaningful subregions (e.g., working vs. non-working days). This process is computationally intensive. Current regional effect methods, such as r-PDP, r-ALE, and r-SHAPDP\footnote{The prefix \textit{r-}<name> is a shortcut for \textit{regional-}<name>} becoming slow when the dataset is large, i.e., has many instances, or the black-box is expensive to evaluate. Additionally, r-PDP struggles with correlated features, often identifying incorrect subregions due to out-of-distribution sampling.
+Unlike global effect methods that provide a single plot per feature, like the global effect of hour on bike-rentals (Figure~\ref{subfig:global}), regional effect methods automatically identify meaningful subregions (e.g., working vs. non-working days). This process is computationally intensive. Current regional effect methods, such as r-PDP, r-ALE, and r-SHAPDP\footnote{The prefix \textit{r-}<name> is a shortcut for \textit{regional-}<name>} becoming slow when the dataset is large (it has many instances) or the black-box model is expensive to evaluate. Additionally, r-PDP struggles when the tabular datahas highly-correlated features, where it may identify incorrect subregions due to out-of-distribution sampling.
 
 To address these challenges, we introduce r-RHALE, a regional effect method built on RHALE~\cite{gkolemis2023rhale, gkolemis22a}, which:
 
 \begin{itemize}
-\item is efficient, making it suitable for large datasets with numerous instances and computationally expensive black-box models, such as deep neural networks.
+\item is efficient, making it suitable for datasets with numerous instances and expensive black-box models, such as deep neural networks.
 \item effectively handles cases with correlated features, avoiding out-of-distribution sampling.
 \end{itemize}
 
@@ -139,7 +139,7 @@ We demonstrate these advantages with two synthetic examples. The code for reprod
 \section{Regional RHALE}
 
 
-rRHALE is the regional version of RHALE, a global effect method for differentiable black-box models. It builds on two key papers. The first, by Gkolemis et al. (2023)~\citep{gkolemis2023rhale}, introduced RHALE which improves ALE by incorporating automatic bin splittingfor unbiased heterogeneity estimation. The second paper, by Herbinger et al. (2023)~\citep{herbinger2023decomposing}, proposed a framework for transforming regional effect methods from global and applied it to PDP, ALE, and SHAP-DP.
+r-RHALE is the regional version of RHALE, a global effect method for differentiable black-box models. It builds on two key papers. The first, by Gkolemis et al. (2023)~\citep{gkolemis2023rhale}, introduced RHALE, a faster version of ALE which also computes the heterogeneity, an important quantity for subregion detection. The second paper, by Herbinger et al. (2023)~\citep{herbinger2023decomposing}, proposed a generic framework for transforming global effect methods to regional and applied it to PDP, ALE, and SHAP-DP.
 
 
 \begin{figure*}
@@ -172,7 +172,7 @@ rRHALE is the regional version of RHALE, a global effect method for differentiab
 
 Let \(\mathcal{X} \in \mathbb{R}^d\) be the \(d\)-dimensional feature space, \(\mathcal{Y}\) the target space and
 \(f(\cdot) : \mathcal{X} \rightarrow \mathcal{Y}\) the black-box function.
-We use index \(s \in \{1, \ldots, d\}\) for the feature of interest and \(/s = \{1, \ldots, d\} - s\) for the rest.
+We use index \(\mathtt{s} \in \{1, \ldots, d\}\) for the feature of interest and \(\mathtt{C} = \{1, \ldots, d\} - s\) for the indices of all the other features.
 For convenience, we use \((x_s, \xc)\) to denote the input vector \((x_1, \cdots , x_s, \cdots, x_D)\),
 \((X_s, \Xc)\) instead of \((X_1, \cdots , X_s, \cdots, X_D)\) for random variables and
 $\mathcal{X}_s, \mathcal{X}_{c}$ for the feature space and its complement, respectively.
