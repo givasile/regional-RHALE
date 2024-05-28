@@ -162,6 +162,5 @@ cython_debug/
 *.aux
 *.abs
 *.xmpdata
-*.cls
 *.out
 *.xmpi
