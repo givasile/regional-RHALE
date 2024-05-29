@@ -65,7 +65,7 @@ twocolumn,
 
 %%
 %% The "title" command
-\title{RegionalRHALE: A fast and accurate regional effect method for black-box models on tabular data}
+\title{Fast and accurate regional effect plots for automated tabular data analysis.}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -84,9 +84,7 @@ twocolumn,
 
 
 \begin{abstract}
-  The regional effect is a novel explainability method that can be used for automated tabular data understanding through a three-step procedure; a black-box machine learning model is trained on a tabular dataset, a regional effect method explains the ML model and the explanations are used to understand the data and and support decision making.
-  Regional effect methods explain the effect of each feature of the dataset on the output within different subgroups, for example, how the age (feature) affects the annual income (output) for men and women separately (subgroups). Identifying meaningful subgroups is computationally intensive, and current regional effect methods face efficiency challenges.
-In this paper, we present regional RHALE (r-RHALE), a nover regional effect method designed for enhanced efficiency, making it particularly suitable for decision-making scenarios involving large datasets, i.e., with numerous instances or high dimensionality, and complex models such as deep neural networks. Beyond its efficiency, r-RHALE handles accurately tabular datasets with highly correlated features. We showcase the benefits of r-RHALE through a series of synthetic examples, benchmarking it against other regional effect methods. The accompanying code for the paper is publicly available.
+The regional effect is a novel explainability method that can be used for automated tabular data understanding through a three-step procedure; a black-box machine learning model is trained on a tabular dataset, a regional effect method explains the ML model and the explanations are used to understand the data and and support decision making.  Regional effect methods explain the effect of each feature of the dataset on the output within different subgroups, for example, how the age (feature) affects the annual income (output) for men and women separately (subgroups). Identifying meaningful subgroups is computationally intensive, and current regional effect methods face efficiency challenges.  In this paper, we present regional RHALE (r-RHALE), a novel regional effect method designed for enhanced efficiency, making it particularly suitable for decision-making scenarios involving large datasets, i.e., with numerous instances or high dimensionality, and complex models such as deep neural networks. Beyond its efficiency, r-RHALE handles accurately tabular datasets with highly correlated features. We showcase the benefits of r-RHALE through a series of synthetic examples, benchmarking it against other regional effect methods. The accompanying code for the paper is publicly available.
 \end{abstract}
 
 %%
@@ -116,7 +114,7 @@ Combining ML with XAI presents a promising strategy for data analysis. As illust
 
 To grasp the idea, consider the following data analysis task based on the bike-sharing dataset~\cite{fanaee2014event}; it includes features such as temperature, humidity, hour, whether it is a working day or not, etc., with the target variable being the number of bikes rented each hour. A data scientist is hired to analyze this data and assist the bike shop owner in planning promotional offers.
 
-Our proposed pipeline consist of the follwing steps, as shown in Figure~\ref{fig:concept_figure}. First, the data scientist fits a neural network to the dataset. Second, they apply a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to understand the impact of specific features on the output. The analysis shows that the feature hour is crucial for bike rentals but varies between working days and weekends. On working days (Figure~\ref{subfig:regional_a}), bike rentals spike around 8:30 AM and 5:00 PM because people mainly rent bikes to transport to their work. In contrast, on weekends (Figure~\ref{subfig:regional_b}), rentals rise from 9:00 AM, peak at 12:00 PM, and decline at 4:00 PM, because people mainly rent bikes for sightseeing. 
+Our proposed pipeline consist of the following steps, as shown in Figure~\ref{fig:concept_figure}. First, the data scientist fits a neural network to the dataset. Second, they apply a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to understand the impact of specific features on the output. The analysis shows that the feature hour is crucial for bike rentals but varies between working days and weekends. On working days (Figure~\ref{subfig:regional_a}), bike rentals spike around 8:30 AM and 5:00 PM because people mainly rent bikes to transport to their work. In contrast, on weekends (Figure~\ref{subfig:regional_b}), rentals rise from 9:00 AM, peak at 12:00 PM, and decline at 4:00 PM, because people mainly rent bikes for sightseeing. 
 
 Based on this analysis, the data scientist advises the bike shop owner to implement promotional offers on different hours for working days and weekends. The same analysis can be applied to other features as well.
 
@@ -179,7 +177,7 @@ i.i.d.\ from the distribution \(\mathbb{P}_{X,Y}\).
 
 \paragraph{globalRHALE.}
 
-RHALE esitmates the effect of feature $x_s$ on the output $y$ (Figure~\ref{subfig:global}), as:
+RHALE estimates the effect of feature $x_s$ on the output $y$ (Figure~\ref{subfig:global}), as:
 
 \begin{equation}
   \label{eq:rhale-approximation}
