@@ -3,51 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: regional_rhale.aux
 The style file: elsarticle-num-names.bst
 Database file #1: regional_rhale.bib
-Repeated entry---line 48 of file regional_rhale.bib
- : @incollection{gkolemis2023rhale
- :                                ,
-I'm skipping whatever remains of this entry
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty pages in gkolemis22a
-You've used 9 entries,
+You've used 14 entries,
             2918 wiz_defined-function locations,
-            679 strings with 6863 characters,
-and the built_in function-call counts, 5898 in all, are:
-= -- 436
-> -- 251
-< -- 5
-+ -- 95
-- -- 84
-* -- 683
-:= -- 840
-add.period$ -- 14
-call.type$ -- 9
-change.case$ -- 76
-chr.to.int$ -- 9
-cite$ -- 10
-duplicate$ -- 444
-empty$ -- 416
-format.name$ -- 119
-if$ -- 1083
+            703 strings with 7924 characters,
+and the built_in function-call counts, 9144 in all, are:
+= -- 671
+> -- 401
+< -- 7
++ -- 151
+- -- 135
+* -- 1044
+:= -- 1314
+add.period$ -- 19
+call.type$ -- 14
+change.case$ -- 118
+chr.to.int$ -- 14
+cite$ -- 15
+duplicate$ -- 690
+empty$ -- 644
+format.name$ -- 183
+if$ -- 1686
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 83
-newline$ -- 56
-num.names$ -- 36
-pop$ -- 169
+missing$ -- 128
+newline$ -- 81
+num.names$ -- 56
+pop$ -- 268
 preamble$ -- 1
-purify$ -- 73
+purify$ -- 115
 quote$ -- 0
-skip$ -- 115
+skip$ -- 185
 stack$ -- 0
-substring$ -- 229
-swap$ -- 308
-text.length$ -- 1
+substring$ -- 345
+swap$ -- 473
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 81
+type$ -- 126
 warning$ -- 1
-while$ -- 36
+while$ -- 56
 width$ -- 0
-write$ -- 133
-(There was 1 error message)
+write$ -- 199
+(There was 1 warning)

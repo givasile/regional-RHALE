@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{14}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -11,6 +11,24 @@
 \providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Article
+\bibitem[{Freiesleben et~al.(2022)Freiesleben, K{\"o}nig, Molnar, and
+  Tejero-Cantero}]{freiesleben2022scientific}
+\bibinfo{author}{T.~Freiesleben}, \bibinfo{author}{G.~K{\"o}nig},
+  \bibinfo{author}{C.~Molnar}, \bibinfo{author}{A.~Tejero-Cantero},
+\newblock \bibinfo{title}{Scientific inference with interpretable machine
+  learning: Analyzing models to learn about real-world phenomena},
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2206.05487}
+  (\bibinfo{year}{2022}).
+%Type = Inproceedings
+\bibitem[{Ribeiro et~al.(2016)Ribeiro, Singh, and Guestrin}]{ribeiro2016should}
+\bibinfo{author}{M.~T. Ribeiro}, \bibinfo{author}{S.~Singh},
+  \bibinfo{author}{C.~Guestrin},
+\newblock \bibinfo{title}{" why should i trust you?" explaining the predictions
+  of any classifier},
+\newblock in: \bibinfo{booktitle}{Proceedings of the 22nd ACM SIGKDD
+  international conference on knowledge discovery and data mining},
+  \bibinfo{year}{2016}, pp. \bibinfo{pages}{1135--1144}.
 %Type = Article
 \bibitem[{Fanaee-T and Gama(2014)}]{fanaee2014event}
 \bibinfo{author}{H.~Fanaee-T}, \bibinfo{author}{J.~Gama},
@@ -36,12 +54,37 @@
   \bibinfo{year}{2022}. \URLprefix \url{http://arxiv.org/abs/2202.07254}.
   \DOIprefix\doi{10.48550/arXiv.2202.07254}, \bibinfo{note}{arXiv:2202.07254
   [cs, stat]}.
+%Type = Article
+\bibitem[{Britton(2019)}]{britton2019vine}
+\bibinfo{author}{M.~Britton},
+\newblock \bibinfo{title}{Vine: Visualizing statistical interactions in black
+  box models},
+\newblock \bibinfo{journal}{arXiv preprint arXiv:1904.00561}
+  (\bibinfo{year}{2019}).
+%Type = Article
+\bibitem[{Scholbeck et~al.(2024)Scholbeck, Casalicchio, Molnar, Bischl, and
+  Heumann}]{scholbeck2024marginal}
+\bibinfo{author}{C.~A. Scholbeck}, \bibinfo{author}{G.~Casalicchio},
+  \bibinfo{author}{C.~Molnar}, \bibinfo{author}{B.~Bischl},
+  \bibinfo{author}{C.~Heumann},
+\newblock \bibinfo{title}{Marginal effects for non-linear prediction
+  functions},
+\newblock \bibinfo{journal}{Data Mining and Knowledge Discovery}
+  (\bibinfo{year}{2024}) \bibinfo{pages}{1--46}.
+%Type = Article
+\bibitem[{Hu et~al.(2020)Hu, Chen, Nair, and Sudjianto}]{hu2020surrogate}
+\bibinfo{author}{L.~Hu}, \bibinfo{author}{J.~Chen}, \bibinfo{author}{V.~N.
+  Nair}, \bibinfo{author}{A.~Sudjianto},
+\newblock \bibinfo{title}{Surrogate locally-interpretable models with
+  supervised machine learning algorithms},
+\newblock \bibinfo{journal}{arXiv preprint arXiv:2007.14528}
+  (\bibinfo{year}{2020}).
 %Type = Incollection
 \bibitem[{Gkolemis et~al.(2023)Gkolemis, Dalamagas, Ntoutsi, and
   Diou}]{gkolemis2023rhale}
 \bibinfo{author}{V.~Gkolemis}, \bibinfo{author}{T.~Dalamagas},
   \bibinfo{author}{E.~Ntoutsi}, \bibinfo{author}{C.~Diou},
-\newblock \bibinfo{title}{Rhale: Robust and heterogeneity-aware accumulated
+\newblock \bibinfo{title}{{RHALE}: Robust and heterogeneity-aware accumulated
   local effects},
 \newblock in: \bibinfo{booktitle}{ECAI 2023}, \bibinfo{publisher}{IOS Press},
   \bibinfo{year}{2023}, pp. \bibinfo{pages}{859--866}.
@@ -49,10 +92,19 @@
 \bibitem[{Gkolemis et~al.(2022)Gkolemis, Dalamagas, and Diou}]{gkolemis22a}
 \bibinfo{author}{V.~Gkolemis}, \bibinfo{author}{T.~Dalamagas},
   \bibinfo{author}{C.~Diou},
-\newblock \bibinfo{title}{Dale: Differential accumulated local effects for
+\newblock \bibinfo{title}{{DALE}: Differential accumulated local effects for
   efficient and accurate global explanations},
 \newblock in: \bibinfo{booktitle}{Asian Conference on Machine Learning (ACML)},
   \bibinfo{year}{2022}.
+%Type = Misc
+\bibitem[{Gkolemis et~al.(2024)Gkolemis, Diou, Ntoutsi, Dalamagas, Bischl,
+  Herbinger, and Casalicchio}]{gkolemis2024effector}
+\bibinfo{author}{V.~Gkolemis}, \bibinfo{author}{C.~Diou},
+  \bibinfo{author}{E.~Ntoutsi}, \bibinfo{author}{T.~Dalamagas},
+  \bibinfo{author}{B.~Bischl}, \bibinfo{author}{J.~Herbinger},
+  \bibinfo{author}{G.~Casalicchio}, \bibinfo{title}{Effector: A python package
+  for regional explanations}, \bibinfo{year}{2024}.
+  \href{http://arxiv.org/abs/2404.02629}{{\tt arXiv:2404.02629}}.
 %Type = Article
 \bibitem[{Friedman and Popescu(2008)}]{friedman_predictive_2008}
 \bibinfo{author}{J.~H. Friedman}, \bibinfo{author}{B.~E. Popescu},
@@ -75,14 +127,5 @@
   predictions},
 \newblock \bibinfo{journal}{Advances in neural information processing systems}
   \bibinfo{volume}{30} (\bibinfo{year}{2017}).
-%Type = Misc
-\bibitem[{Gkolemis et~al.(2024)Gkolemis, Diou, Ntoutsi, Dalamagas, Bischl,
-  Herbinger, and Casalicchio}]{gkolemis2024effector}
-\bibinfo{author}{V.~Gkolemis}, \bibinfo{author}{C.~Diou},
-  \bibinfo{author}{E.~Ntoutsi}, \bibinfo{author}{T.~Dalamagas},
-  \bibinfo{author}{B.~Bischl}, \bibinfo{author}{J.~Herbinger},
-  \bibinfo{author}{G.~Casalicchio}, \bibinfo{title}{Effector: A python package
-  for regional explanations}, \bibinfo{year}{2024}.
-  \href{http://arxiv.org/abs/2404.02629}{{\tt arXiv:2404.02629}}.
 
 \end{thebibliography}
