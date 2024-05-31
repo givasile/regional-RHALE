@@ -113,12 +113,12 @@ Combining ML with XAI is a promising strategy for data analysis. As shown in Fig
 
 Consider the task of deciding a promotional offer for bike rentals using a relevant dataset~\cite{fanaee2014event} with historical data. A detailed description of this task is presented in Section~\ref{sec:demonstration}. The dataset includes features such as temperature, humidity, hour, working vs. non-working day, etc.. The target variable is the number of bikes rented per hour. We focus on the \texttt{hour} feature, but the methodology is applicable to any other feature.
 
-Standard data analysis methods, such as aggregation-based queries, pairwise plots (Figure~\ref{subfig:pairwise}) or global effect plots (Figure~\ref{subfig:global}), indicate that bike rentals peak around 8:30 AM and 5:00 PM, due to people moving from and to work.
+Standard data analysis methods, such as aggregation-based queries, pairwise plots (Figure~\ref{subfig:pairwise}) or global effect plots (Figure~\ref{subfig:global}), indicate that bike rentals peak around 8:30 AM and 5:00 PM with a drop in-between, due to people moving from and to work.
 
-We propose an improved pipeline (Figure~\ref{fig:concept_figure}) which can provide more detailed insights. We, first, fit a ML model, like a neural network, to the dataset and then use a regional effect XAI method~\cite{herbinger2023decomposing, herbinger_repid_2022, britton2019vine, scholbeck2024marginal, hu2020surrogate}.
-The pipeline identifies two distinct patterns: on weekdays (Figure~\ref{subfig:regional_a}), rentals peak at 8:30 AM and 5:00 PM, but on weekends (Figure~\ref{subfig:regional_b}), rentals rise from 9:00 AM, peak at 12:00 PM, and decline by 4:00 PM, indicating recreational use.
+We propose a pipeline (Figure~\ref{fig:concept_figure}) that can provide more detailed insights. We, first, fit a ML model, like a neural network, to the dataset and then use a regional effect XAI method~\cite{herbinger2023decomposing, herbinger_repid_2022, britton2019vine, scholbeck2024marginal, hu2020surrogate} to explain it.
+In the example, the pipeline identifies two distinct patterns: on weekdays (Figure~\ref{subfig:regional_a}), like before, bike-rentals peak at 8:30 AM and 5:00 PM, but on weekends (Figure~\ref{subfig:regional_b}) they rise from 9:00 AM, peak at 12:00 PM, and decline by 4:00 PM, a pattern that fits to recreational use.
 
-According to that we should opt for a different promotional offer on working and non-working days. The key advantage of our approach is the automatic extraction of these patterns from the data, without any domain expertise, which would be challenging with traditional aggregation-based methods.
+Based on that, we should opt for a different promotional offer on working and non-working days. The key advantage of our approach is the automatic extraction of these subcases from the data, without any domain expertise, which would be challenging with traditional aggregation-based methods.
 
 The automated extraction of significant subregions, like ``working'' vs. ``non-working'' days is computationally intensive. Current regional effect methods, such as r-PDP, r-ALE, and r-SHAPDP\footnote{The prefix \textit{r-}<name> is a shortcut for \textit{regional-}<name>} face computational limitations when the dataset is large or the black-box model is expensive to evaluate. Additionally, r-PDP struggles with tabular datasets with correlated features.
 
@@ -129,7 +129,7 @@ To address these challenges, we introduce r-RHALE, a regional effect method buil
 \item handles appropriately tabular datasets with correlated features
 \end{itemize}
 
-We demonstrate these advantages with two synthetic examples. For the experiments, we use the python package Effector~\cite{gkolemis2024effector}.
+We demonstrate these advantages with two synthetic examples (Sections~\ref{sec:efficiency} and~\ref{sec:correlated-features}) and we apply r-RHALE to a real dataset (Section~\ref{sec:demonstration}). For the experiments, we use the python package Effector~\cite{gkolemis2024effector}.
 
 \begin{figure*}[t]
     \centering
@@ -252,7 +252,7 @@ In Figure~\ref{fig:efficiency_heavy_model}, we observe that r-RHALE's execution 
   \caption{}
   \label{fig:efficiency_nof_instances}
   \end{subfigure}
-  \caption{Execution time applied (a) neural networks of varying number of layers, i.e., varying inference times and (b) on datasets with a varying number of instances (log scale).}
+  \caption{Execution time applied (a) on neural networks of varying number of layers, i.e., varying inference times and (b) on datasets with a varying number of instances (log scale).}
 \end{figure}
 
 \paragraph{Large tabular dataset:}
@@ -329,8 +329,7 @@ Our aim is to analyze this data to propose an optimal time for a promotional off
 
 The proposed pipeline, depicted in Figure~\ref{fig:concept_figure}, comprises the following steps: first, we apply a neural network to the dataset. Subsequently, we use a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to assess the impact of the "hour" feature on bike rentals. The analysis reveals that the influence of "hour" differs between weekdays and weekends. On weekdays (Figure~\ref{subfig:regional_a}), bike rentals peak around 8:30 AM and 5:00 PM, corresponding to commuting times. On weekends (Figure~\ref{subfig:regional_b}), rentals increase from 9:00 AM, peak at 12:00 PM, and decrease after 4:00 PM, reflecting recreational use.
 
-This finding aligns with common sense. The strength of the pipeline lies in its ability to automatically uncover such patterns without external input. Unlike traditional data analysis methods that require domain expert intervention to identify such subspaces, our approach leverages the machine learning model to discern complex relationships within the data, and the regional effect method to highlight significant subspaces.
-
+This finding aligns with common sense. The strength of the pipeline lies in its ability to automatically uncover such patterns without external input. Unlike traditional data analysis methods that require domain expertise to identify such subspaces, our approach use the machine learning to gain this knowledge from the complex patterns within the data. Then, r-RHALE explains this knowledge with one plot per significant subspace.
 
 \section{Conclusion and Future Work}
 
