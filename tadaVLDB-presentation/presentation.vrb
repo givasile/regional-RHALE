@@ -1,0 +1,13 @@
+\frametitle{Common API between methods}
+\begin{lstlisting}[language=Python]
+# global effect
+effector.PDP(X, f).plot(feature=i)
+effector.RHALE(X, f, f_jac).plot(feature=i)
+effector.SHAPDP(X, f).plot(feature=i)
+
+
+# regional effect
+effector.RegionalPDP(X, f).plot(feature=i, node_idx=0)
+effector.RegionalRHALE(X, f, f_jac).plot(feature=i, node_idx=0)
+effector.RegionalSHAPDP(X, f).plot(feature=i, node_idx=0)
+\end{lstlisting}

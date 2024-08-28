@@ -1,0 +1,214 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{14}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Apley and Zhu(2020)]%
+        {apley_visualizing_2020}
+\bibfield{author}{\bibinfo{person}{Daniel~W Apley} {and}
+  \bibinfo{person}{Jingyu Zhu}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Visualizing the effects of predictor variables in
+  black box supervised learning models}.
+\newblock \bibinfo{journal}{\emph{Journal of the Royal Statistical Society:
+  Series B (Statistical Methodology)}} \bibinfo{volume}{82},
+  \bibinfo{number}{4} (\bibinfo{year}{2020}), \bibinfo{pages}{1059--1086}.
+\newblock
+\newblock
+\shownote{Publisher: Wiley Online Library}.
+
+
+\bibitem[Britton(2019)]%
+        {britton2019vine}
+\bibfield{author}{\bibinfo{person}{Matthew Britton}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Vine: Visualizing statistical interactions in black
+  box models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1904.00561}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[Fanaee-T and Gama(2014)]%
+        {fanaee2014event}
+\bibfield{author}{\bibinfo{person}{Hadi Fanaee-T} {and} \bibinfo{person}{Joao
+  Gama}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Event labeling combining ensemble detectors and
+  background knowledge}.
+\newblock \bibinfo{journal}{\emph{Progress in Artificial Intelligence}}
+  \bibinfo{volume}{2} (\bibinfo{year}{2014}), \bibinfo{pages}{113--127}.
+\newblock
+
+
+\bibitem[Freiesleben et~al\mbox{.}(2022)]%
+        {freiesleben2022scientific}
+\bibfield{author}{\bibinfo{person}{Timo Freiesleben}, \bibinfo{person}{Gunnar
+  K{\"o}nig}, \bibinfo{person}{Christoph Molnar}, {and} \bibinfo{person}{Alvaro
+  Tejero-Cantero}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Scientific inference with interpretable machine
+  learning: Analyzing models to learn about real-world phenomena}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2206.05487}}
+  (\bibinfo{year}{2022}).
+\newblock
+
+
+\bibitem[Friedman and Popescu(2008)]%
+        {friedman_predictive_2008}
+\bibfield{author}{\bibinfo{person}{Jerome~H Friedman} {and}
+  \bibinfo{person}{Bogdan~E Popescu}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Predictive learning via rule ensembles}.
+\newblock \bibinfo{journal}{\emph{The annals of applied statistics}}
+  (\bibinfo{year}{2008}), \bibinfo{pages}{916--954}.
+\newblock
+\newblock
+\shownote{Publisher: JSTOR}.
+
+
+\bibitem[Gkolemis et~al\mbox{.}(2022)]%
+        {gkolemis22a}
+\bibfield{author}{\bibinfo{person}{Vasilis Gkolemis}, \bibinfo{person}{Theodore
+  Dalamagas}, {and} \bibinfo{person}{Christos Diou}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{{DALE}: Differential Accumulated Local Effects for
+  efficient and accurate global explanations}, In \bibinfo{booktitle}{Asian
+  Conference on Machine Learning (ACML)}.
+\newblock \bibinfo{journal}{\emph{Proceedings of Machine Learning Research}}.
+\newblock
+
+
+\bibitem[Gkolemis et~al\mbox{.}(2023)]%
+        {gkolemis2023rhale}
+\bibfield{author}{\bibinfo{person}{Vasilis Gkolemis}, \bibinfo{person}{Theodore
+  Dalamagas}, \bibinfo{person}{Eirini Ntoutsi}, {and} \bibinfo{person}{Christos
+  Diou}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{{RHALE}: Robust and Heterogeneity-Aware Accumulated
+  Local Effects}.
+\newblock In \bibinfo{booktitle}{\emph{ECAI 2023}}. \bibinfo{publisher}{IOS
+  Press}, \bibinfo{pages}{859--866}.
+\newblock
+
+
+\bibitem[Gkolemis et~al\mbox{.}(2024)]%
+        {gkolemis2024effector}
+\bibfield{author}{\bibinfo{person}{Vasilis Gkolemis}, \bibinfo{person}{Christos
+  Diou}, \bibinfo{person}{Eirini Ntoutsi}, \bibinfo{person}{Theodore
+  Dalamagas}, \bibinfo{person}{Bernd Bischl}, \bibinfo{person}{Julia
+  Herbinger}, {and} \bibinfo{person}{Giuseppe Casalicchio}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Effector: A Python package for regional
+  explanations}.
+\newblock
+\newblock
+\showeprint[arxiv]{2404.02629}~[cs.LG]
+
+
+\bibitem[Herbinger et~al\mbox{.}(2022)]%
+        {herbinger_repid_2022}
+\bibfield{author}{\bibinfo{person}{Julia Herbinger}, \bibinfo{person}{Bernd
+  Bischl}, {and} \bibinfo{person}{Giuseppe Casalicchio}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{title}{{REPID}: {Regional} {Effect} {Plots} with implicit
+  {Interaction} {Detection}}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.48550/arXiv.2202.07254}
+\showDOI{\tempurl}
+\newblock
+\shownote{arXiv:2202.07254 [cs, stat]}.
+
+
+\bibitem[Herbinger et~al\mbox{.}(2023)]%
+        {herbinger2023decomposing}
+\bibfield{author}{\bibinfo{person}{Julia Herbinger}, \bibinfo{person}{Bernd
+  Bischl}, {and} \bibinfo{person}{Giuseppe Casalicchio}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Decomposing global feature effects based on feature
+  interactions}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2306.00541}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Hu et~al\mbox{.}(2020)]%
+        {hu2020surrogate}
+\bibfield{author}{\bibinfo{person}{Linwei Hu}, \bibinfo{person}{Jie Chen},
+  \bibinfo{person}{Vijayan~N Nair}, {and} \bibinfo{person}{Agus Sudjianto}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Surrogate locally-interpretable models with
+  supervised machine learning algorithms}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2007.14528}}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[Lundberg and Lee(2017)]%
+        {lundberg2017unified}
+\bibfield{author}{\bibinfo{person}{Scott~M Lundberg} {and}
+  \bibinfo{person}{Su-In Lee}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{A unified approach to interpreting model
+  predictions}.
+\newblock \bibinfo{journal}{\emph{Advances in neural information processing
+  systems}}  \bibinfo{volume}{30} (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[Ribeiro et~al\mbox{.}(2016)]%
+        {ribeiro2016should}
+\bibfield{author}{\bibinfo{person}{Marco~Tulio Ribeiro},
+  \bibinfo{person}{Sameer Singh}, {and} \bibinfo{person}{Carlos Guestrin}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{" Why should i trust you?" Explaining the
+  predictions of any classifier}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the 22nd ACM SIGKDD international conference on knowledge discovery and data
+  mining}}. \bibinfo{pages}{1135--1144}.
+\newblock
+
+
+\bibitem[Scholbeck et~al\mbox{.}(2024)]%
+        {scholbeck2024marginal}
+\bibfield{author}{\bibinfo{person}{Christian~A Scholbeck},
+  \bibinfo{person}{Giuseppe Casalicchio}, \bibinfo{person}{Christoph Molnar},
+  \bibinfo{person}{Bernd Bischl}, {and} \bibinfo{person}{Christian Heumann}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Marginal effects for non-linear prediction
+  functions}.
+\newblock \bibinfo{journal}{\emph{Data Mining and Knowledge Discovery}}
+  (\bibinfo{year}{2024}), \bibinfo{pages}{1--46}.
+\newblock
+
+
+\end{thebibliography}

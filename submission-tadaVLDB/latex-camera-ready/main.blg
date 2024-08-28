@@ -1,0 +1,71 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: regional_rhale.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in britton2019vine
+Warning--page numbers missing in both pages and numpages fields in britton2019vine
+Warning--no number and no volume in freiesleben2022scientific
+Warning--page numbers missing in both pages and numpages fields in freiesleben2022scientific
+Warning--no number and no volume in friedman_predictive_2008
+Warning--no number and no volume in gkolemis22a
+Warning--page numbers missing in both pages and numpages fields in gkolemis22a
+Warning--empty address in gkolemis2023rhale
+Warning--no number and no volume in herbinger2023decomposing
+Warning--page numbers missing in both pages and numpages fields in herbinger2023decomposing
+Warning--no number and no volume in hu2020surrogate
+Warning--page numbers missing in both pages and numpages fields in hu2020surrogate
+Warning--page numbers missing in both pages and numpages fields in lundberg2017unified
+Warning--empty publisher in ribeiro2016should
+Warning--empty address in ribeiro2016should
+Warning--no number and no volume in scholbeck2024marginal
+You've used 14 entries,
+            5981 wiz_defined-function locations,
+            1552 strings with 20701 characters,
+and the built_in function-call counts, 15624 in all, are:
+= -- 2286
+> -- 492
+< -- 0
++ -- 167
+- -- 171
+* -- 1060
+:= -- 1464
+add.period$ -- 74
+call.type$ -- 14
+change.case$ -- 102
+chr.to.int$ -- 14
+cite$ -- 30
+duplicate$ -- 1287
+empty$ -- 920
+format.name$ -- 223
+if$ -- 3985
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 47
+newline$ -- 161
+num.names$ -- 98
+pop$ -- 513
+preamble$ -- 1
+purify$ -- 213
+quote$ -- 0
+skip$ -- 448
+stack$ -- 0
+substring$ -- 1045
+swap$ -- 107
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 295
+warning$ -- 16
+while$ -- 80
+width$ -- 0
+write$ -- 308
+(There were 16 warnings)

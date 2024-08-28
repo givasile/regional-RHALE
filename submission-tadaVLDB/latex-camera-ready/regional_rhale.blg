@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: regional_rhale.aux
+The style file: elsarticle-num-names.bst
+Database file #1: regional_rhale.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty pages in gkolemis22a
+You've used 14 entries,
+            2918 wiz_defined-function locations,
+            703 strings with 7924 characters,
+and the built_in function-call counts, 9144 in all, are:
+= -- 671
+> -- 401
+< -- 7
++ -- 151
+- -- 135
+* -- 1044
+:= -- 1314
+add.period$ -- 19
+call.type$ -- 14
+change.case$ -- 118
+chr.to.int$ -- 14
+cite$ -- 15
+duplicate$ -- 690
+empty$ -- 644
+format.name$ -- 183
+if$ -- 1686
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 128
+newline$ -- 81
+num.names$ -- 56
+pop$ -- 268
+preamble$ -- 1
+purify$ -- 115
+quote$ -- 0
+skip$ -- 185
+stack$ -- 0
+substring$ -- 345
+swap$ -- 473
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 126
+warning$ -- 1
+while$ -- 56
+width$ -- 0
+write$ -- 199
+(There was 1 warning)

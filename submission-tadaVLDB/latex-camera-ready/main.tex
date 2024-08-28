@@ -1,0 +1,504 @@
+% VLDB WORKSHOP template version of 2024-05-15 enhances the ACM template, version 1.7.0:
+% https://www.acm.org/publications/proceedings-template
+% The ACM Latex guide provides further information about the ACM template
+
+\documentclass[sigconf, nonacm]{acmart}
+
+\usepackage{blindtext}
+\usepackage[linesnumbered,ruled]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{tikzsymbols}
+\usepackage{pifont} % for \ding command
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{xfrac}
+\usepackage{booktabs} % For better horizontal rules
+\usepackage{cellspace} % For adjusting vertical spacing
+\usepackage{xcolor}
+\newcommand\todop[1]{\textcolor{red}{#1}} % todo in the paper
+\newcommand\todos[1]{\textcolor{blue}{#1}} % todo in the software
+\newcommand{\tik}{\textcolor{green}{\ding{51}}}
+\newcommand{\ntik}{\textcolor{red}{\ding{55}}}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\newcommand{\xcc}{\mathbf{x_{/s}}}
+\newcommand{\Xcal}{\mathcal{X}}
+\newcommand{\xb}{\mathbf{x}}
+\newcommand{\xc}{\mathbf{x_c}}
+\newcommand{\Xc}{\mathbf{X_c}}
+\newcommand{\xci}{\mathbf{x}^{(i)}_c}
+
+
+
+%% The following content must be adapted for the final version
+% paper-specific
+\newcommand\vldbyear{2024}
+% name of the workshop
+\newcommand\vldbworkshop{Tabular Data Analysis Workshop (TaDA)}
+% should be fine as it is
+\newcommand\vldbauthors{\authors}
+\newcommand\vldbtitle{\shorttitle} 
+% leave empty if no availability url should be set
+\newcommand\vldbavailabilityurl{https://github.com/givasile/regional-RHALE}
+% whether page numbers should be shown or not, use 'plain' for review versions, 'empty' for camera ready
+\newcommand\vldbpagestyle{empty} 
+
+\begin{document}
+\title{Fast and Accurate Regional Effect Plots for Automated Tabular Data Analysis}
+
+%%
+%% The "author" command and its associated commands are used to define the authors and their affiliations.
+\author{Vasilis Gkolemis}
+\affiliation{%
+  \institution{ATHENA Research Center}
+  \city{Athens}
+  \state{Greece}
+  \postcode{151 25}
+}
+\email{vgkolemis@athenarc.gr}
+
+\author{Theodore Dalamagas}
+\affiliation{%
+  \institution{ATHENA Research Center}
+  \city{Athens}
+  \state{Greece}
+}
+\email{dalamag@athenarc.gr}
+
+\author{Eirini Ntoutsi}
+\affiliation{%
+  \institution{University of the Bundeswehr}
+  \city{Munich}
+  \state{Germany}
+}
+\email{eirini.ntoutsi@unibw.de}
+
+\author{Christos Diou}
+\affiliation{%
+  \institution{Harokopio University of Athens}
+  \city{Athens}
+  \country{Greece}
+}
+\email{cdiou@hua.gr}
+
+
+% \author{Valerie B\'eranger}
+% \orcid{0000-0001-5109-3700}
+% \affiliation{%
+%   \institution{Inria Paris-Rocquencourt}
+%   \city{Rocquencourt}
+%   \country{France}
+% }
+% \email{vb@rocquencourt.com}
+
+% \author{J\"org von \"Arbach}
+% \affiliation{%
+%   \institution{University of T\"ubingen}
+%   \city{T\"ubingen}
+%   \country{Germany}
+% }
+% \email{jaerbach@uni-tuebingen.edu}
+% \email{myprivate@email.com}
+% \email{second@affiliation.mail}
+
+% \author{Wang Xiu Ying}
+% \author{Zhe Zuo}
+% \affiliation{%
+%   \institution{East China Normal University}
+%   \city{Shanghai}
+%   \country{China}
+% }
+% \email{firstname.lastname@ecnu.edu.cn}
+
+% \author{Donald Fauntleroy Duck}
+% \affiliation{%
+%   \institution{Scientific Writing Academy}
+%   \city{Duckburg}
+%   \country{Calisota}
+% }
+% \affiliation{%
+%   \institution{Donald's Second Affiliation}
+%   \city{City}
+%   \country{country}
+% }
+% \email{donald@swa.edu}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+Regional effect is a novel explainability method that can be used for automated tabular data understanding through a three-step procedure; a black-box machine learning (ML) model is fit on the tabular data, a regional effect method explains the ML model and the explanations are used to understand the data and and support decision making.  Regional effect methods explain the effect of each feature on the output within different subgroups, for example, how the age (feature) affects the annual income (output) for men and women separately (subgroups). Identifying meaningful subgroups is computationally intensive, and current regional effect methods face efficiency challenges. In this paper, we present regional RHALE (r-RHALE), a novel regional effect method designed for enhanced efficiency. r-RHALE is particularly suitable for decision-making scenarios that involve large datasets, i.e., with numerous instances or high dimensionality, and complex models such as deep neural networks. Beyond its efficiency, r-RHALE handles accurately tabular datasets with highly correlated features. We showcase the benefits of r-RHALE through a series of synthetic examples, benchmarking it against other regional effect methods. The accompanying code for the paper is publicly available.
+\end{abstract}
+
+\maketitle
+
+%%% do not modify the following VLDB block %%
+%%% VLDB block start %%%
+\pagestyle{\vldbpagestyle}
+\begingroup\small\noindent\raggedright\textbf{VLDB Workshop Reference Format:}\\
+\vldbauthors. \vldbtitle. VLDB \vldbyear\ Workshop: \vldbworkshop.\\ %\vldbvolume(\vldbissue): \vldbpages, \vldbyear.\\
+%\href{https://doi.org/\vldbdoi}{doi:\vldbdoi}
+\endgroup
+\begingroup
+\renewcommand\thefootnote{}\footnote{\noindent
+This work is licensed under the Creative Commons BY-NC-ND 4.0 International License. Visit \url{https://creativecommons.org/licenses/by-nc-nd/4.0/} to view a copy of this license. For any use beyond those covered by this license, obtain permission by emailing \href{mailto:info@vldb.org}{info@vldb.org}. Copyright is held by the owner/author(s). Publication rights licensed to the VLDB Endowment. \\
+\raggedright Proceedings of the VLDB Endowment. %, Vol. \vldbvolume, No. \vldbissue\ %
+ISSN 2150-8097. \\
+%\href{https://doi.org/\vldbdoi}{doi:\vldbdoi} \\
+}\addtocounter{footnote}{-1}\endgroup
+%%% VLDB block end %%%
+
+%%% do not modify the following VLDB block %%
+%%% VLDB block start %%%
+\ifdefempty{\vldbavailabilityurl}{}{
+\vspace{.3cm}
+\begingroup\small\noindent\raggedright\textbf{VLDB Workshop Artifact Availability:}\\
+The source code, data, and/or other artifacts have been made available at \url{\vldbavailabilityurl}.
+\endgroup
+}
+%%% VLDB block end %%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+Latest advancements in Machine Learning (ML) for tabular data have provided models that can accurately learn complex data patterns.
+At the same time, eXplainable AI (XAI)~\cite{freiesleben2022scientific, ribeiro2016should} has emerged to explain how these models operate.
+Combining ML with XAI is a promising strategy for data analysis. As shown in Figure~\ref{fig:concept_figure}, we can analyze a tabular dataset by explaining a black-box model that is trained on it.
+
+Consider the task of deciding a promotional offer for bike rentals using a relevant dataset~\cite{fanaee2014event} with historical data. A detailed description of this task is presented in Section~\ref{sec:demonstration}. The dataset includes features such as temperature, humidity, hour, working vs. non-working day, etc.. The target variable is the number of bikes rented per hour. We focus on the \texttt{hour} feature, but the methodology is applicable to any other feature.
+
+Standard data analysis methods, such as aggregation-based queries, pairwise plots (Figure~\ref{subfig:pairwise}) or global effect plots (Figure~\ref{subfig:global}), indicate that bike rentals peak around 8:30 AM and 5:00 PM with a drop in-between, due to people moving from and to work.
+
+We propose a pipeline (Figure~\ref{fig:concept_figure}) that can provide more detailed insights. We, first, fit a ML model, like a neural network, to the dataset and then use a regional effect XAI method~\cite{herbinger2023decomposing, herbinger_repid_2022, britton2019vine, scholbeck2024marginal, hu2020surrogate} to explain it.
+In the example, the pipeline identifies two distinct patterns: on weekdays (Figure~\ref{subfig:regional_a}), like before, bike-rentals peak at 8:30 AM and 5:00 PM, but on weekends (Figure~\ref{subfig:regional_b}) they rise from 9:00 AM, peak at 12:00 PM, and decline by 4:00 PM, a pattern that fits to recreational use.
+
+Based on that, we should opt for a different promotional offer on working and non-working days. The key advantage of our approach is the automatic extraction of these subcases from the data, without any domain expertise, which would be challenging with traditional aggregation-based methods.
+
+The automated extraction of significant subregions, like ``working'' vs. ``non-working'' days is computationally intensive. Current regional effect methods, such as r-PDP, r-ALE, and r-SHAPDP\footnote{The prefix \textit{r-}<name> is a shortcut for \textit{regional-}<name>} face computational limitations when the dataset is large or the black-box model is expensive to evaluate. Additionally, r-PDP struggles with tabular datasets with correlated features.
+
+To address these challenges, we introduce r-RHALE, a regional effect method built on RHALE~\cite{gkolemis2023rhale, gkolemis22a}, which:
+
+\begin{itemize}
+\item is efficient, making it suitable for datasets with numerous instances and expensive black-box models, such as deep neural networks
+\item handles appropriately tabular datasets with correlated features
+\end{itemize}
+
+We demonstrate these advantages with two synthetic examples (Sections~\ref{sec:efficiency} and~\ref{sec:correlated-features}) and we apply r-RHALE to a real dataset (Section~\ref{sec:demonstration}). For the experiments, we use the python package Effector~\cite{gkolemis2024effector}.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{figures/concept_image.png}
+    \caption{Data analysis and decision making pipeline: Utilizing regional effect plots to extract insights from tabular data.}
+    \label{fig:concept_figure}
+\end{figure*}
+
+\section{Regional RHALE}
+
+r-RHALE builds on two papers. Gkolemis et al. (2023)~\citep{gkolemis2023rhale} introduced RHALE, a global effect method for differentiable black-box models that improves on ALE by being faster and computing heterogeneity. As we will show below, the heterogeneity is crucial quantity for subregion detection. Herbinger et al. (2023)~\citep{herbinger2023decomposing} proposed a generic framework for transforming global effect methods to regional, and applied it to PDP\cite{friedman_predictive_2008}, ALE\cite{apley_visualizing_2020}, and SHAP-DP\cite{lundberg2017unified}. This paper integrates these approaches.
+
+\paragraph{Notation.}
+
+Let \(\mathcal{X} \in \mathbb{R}^d\) be the \(d\)-dimensional feature space, \(\mathcal{Y}\) the target space and
+\(f(\cdot) : \mathcal{X} \rightarrow \mathcal{Y}\) the black-box function.
+We use index \(\mathtt{s} \in \{1, \ldots, d\}\) for the feature of interest and \(\mathtt{C} = \{1, \ldots, d\} - s\) for the indices of all the other features.
+For convenience, we use \((x_s, \xc)\) to denote the input vector \((x_1, \cdots , x_s, \cdots, x_D)\),
+\((X_s, \Xc)\) instead of \((X_1, \cdots , X_s, \cdots, X_D)\) for random variables and
+$\mathcal{X}_s, \mathcal{X}_{c}$ for the feature space and its complement, respectively.
+The training set \(\mathcal{D} = \{(\xb^{(i)}, y^{(i)})\}_{i=1}^N\) is sampled
+i.i.d.\ from the distribution \(\mathbb{P}_{X,Y}\).
+
+\paragraph{globalRHALE.}
+
+RHALE estimates the effect of feature $x_s$ on the output $y$ (Figure~\ref{subfig:global}), as:
+
+\begin{equation}
+  \label{eq:rhale-approximation}
+f(x_s) = \underbrace{\sum_{k=1}^{k_{x_s}} \underbrace{\frac{z_k - z_{k-1}}{ \left | \mathcal{S}_k \right |} \sum_{i: \xb^{(i)} \in \mathcal{S}_k} \overbrace{\frac{\partial f}{\partial x_s} (x_s^{(i)}, \xci)}^{\text{instance effect}}}_{\mu_k (\text{interval effect})}}_{\text{global effect}}
+\end{equation}
+
+\noindent
+The feature axis $x_s$ is divided into $K_s$ variable-size intervals $\{\mathcal{Z}_k\}_{k=1}^{K_s}$, where each interval spans $[z_{k-1}, z_k)$. Let $\mathcal{S}_k$ be the set of instances with the $s$-th feature in the $k$-th interval, i.e., $\mathcal{S}_k = \{ x^{(i)} : z_{k-1} \leq x^{(i)}_s < z_k \}$. The interval boundaries are determined by solving an optimization problem as described in Gkolemis et al. (2023).
+
+To understand Eq.~(\ref{eq:rhale-approximation}), we proceed step by step. The instance effect, $\frac{\partial f}{\partial x_s} (x_s^{(i)}, \xci)$, measures the change in the output when the $s$-th feature changes slightly from $(x_s^{(i)}, \xci)$ to $(x_s^{(i)} + \delta, \xci)$. We then average the instance effects for all instances in the $k$-th bin to obtain the bin effect, $\mu_k$. The global effect is the sum of the bin effects.
+
+\paragraph{Heterogeneity.}
+
+Heterogeneity measures the deviation of instance effects from the bin effect:
+
+\begin{equation}
+  \label{eq:rhale-approximation-heterogeneity}
+  H_s = \sum_{k=1}^{K_s} \frac{z_k - z_{k-1}}{|\mathcal{S}_k|}\sum_{i: \xb^{(i)} \in \mathcal{S}_k} \left [ \frac{\partial f}{\partial x_s} (x_s^{(i)}, \xci) - \mu_k \right ]^2
+\end{equation}
+
+\noindent
+Zero heterogeneity indicates that the effect of $x_s$ on the output is independent of other features, i.e., \( f(\xb) = f_s(x_s) + f_c(\xc) \). In this ideal case, the feature effect explanation is reliable for all instances. As heterogeneity increases, the feature effect explanation becomes less accurate for individual instances, reflecting a stronger dependence on other features $\xc$. 
+
+For example, the effect of hour on bike rentals significantly depends on the day type, resulting in high heterogeneity and inaccurate average explanations for non-working days. By splitting data into working and non-working days, regional effects reduce heterogeneity, providing reliable explanations within each subregion.
+
+\paragraph{r-RHALE.}
+
+Regional effects aim to identify subregions with reduced heterogeneity by conditioning on one ore more of the features in \( \mathtt{C} \). For continuous features, this condition is based on whether the feature value is above or below a threshold \( \tau \), and for categorical features, whether it equals or differs from \( \tau \). A CART-based algorithm iterates over all features in \( \xb_c \) and tests various thresholds \( \tau \) to find the one that maximally reduces heterogeneity.
+r-RHALE combines the heterogeneity measure from Eq.~(\ref{eq:rhale-approximation-heterogeneity}) with this CART-based algorithm, as detailed in~\cite{herbinger2023decomposing, gkolemis2024effector}.
+
+\paragraph{Computational Advantage.}
+
+r-RHALE offers a computational advantage over other methods due to its approach to computing heterogeneity. According to Eq.~(\ref{eq:rhale-approximation-heterogeneity}), the term \( \frac{\partial f}{\partial x_s} (x_s^{(i)}, \xci) \) needs to be computed only once for all instances. When executed in a batched manner with support for automatic differentiation, the computational time is comparable to a single evaluation of \( f \). In contrast, other methods require multiple evaluations of \( f \) to compute regional effects, resulting in slower execution times, especially for complex and computationally intensive functions \( f \).
+
+
+\begin{figure*}
+  \centering
+  \begin{subfigure}[t]{0.24\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/running_example/01_bike_sharing_dataset_pairwise_plot.png}
+  \caption{Pairwise plot}
+  \label{subfig:pairwise}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.24\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/running_example/01_bike_sharing_dataset_23_1.png}
+  \caption{Global effect}
+  \label{subfig:global}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.24\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/running_example/01_bike_sharing_dataset_29_1.png}
+  \caption{Effect on working days}
+  \label{subfig:regional_a}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.24\textwidth}
+  \centering  
+  \includegraphics[width=\linewidth]{figures/running_example/01_bike_sharing_dataset_29_0.png}
+  \caption{Effect on non-working days}
+  \label{subfig:regional_b}
+  \end{subfigure}
+  \caption{r-RHALE applied to the bike-sharing dataset; (a) global effect of feature ``hour'' on the bike-rentals (b) regional effect on feature ``working days'' (c) regional effect on feature ``non-working days''.}
+  \label{fig:main-concept}
+\end{figure*}
+
+% \section{Synthetic Examples}
+
+% Example~\ref{sec:efficiency} compares the execution times and Exampledemonstrates that r-RHALE is faster than the existing methods. The example of Section~\ref{sec:correlated-features} shows that, unlike r-PDP, r-RHALE handles well tabular datasets with correlated features.
+
+\section{Execution time comparison}
+\label{sec:efficiency}
+
+
+In this example, we show that r-RHALE executes significantly faster than r-PDP and r-ALE.
+We do not include r-SHAPDP in the comparison, because its execution time is prohibitive high, e.g., more than 30 minutes, even for relatively light models and datasets. In the example, we observe that r-RHALE executes fast even under a (a) slow-inference black-box model and (b) a large tabular dataset.
+
+\paragraph{Slow-inference black-box model:}
+
+We generate a dataset with $N=10^4$ instances, $D=10$ features and train deep neural networks (DNN) with layers ranging from $L=3$ to $L=20$. More layers means bigger inference time, so our findings generalize to any slow-inference black-box model.
+
+In Figure~\ref{fig:efficiency_heavy_model}, we observe that r-RHALE's execution time increases at a slower rate compared to r-ALE and r-PDP. Even for complex models like DNNs with 20 layers, r-RHALE requires less than 15 seconds to generate regional effect plots for a single feature. This translates to approximately 4-5 minutes for a typical tabular dataset with 20 features. In contrast, r-PDP requires about 4 minutes per feature, totaling roughly an hour for all features, while r-ALE needs about 1 minute per feature, resulting in approximately 20 minutes for all features.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[t]{0.235\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/simulation_2/efficiency_layers.png}
+  \caption{}
+  \label{fig:efficiency_heavy_model}
+  \end{subfigure}
+  \begin{subfigure}[t]{0.235\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures/simulation_2/efficiency_samples.png}
+  \caption{}
+  \label{fig:efficiency_nof_instances}
+  \end{subfigure}
+  \caption{Execution time applied (a) on neural networks of varying number of layers, i.e., varying inference times and (b) on datasets with a varying number of instances (log scale).}
+\end{figure}
+
+\paragraph{Large tabular dataset:}
+
+We define a deep neural network (DNN) with \( L = 5 \) layers and a synthetic dataset with \( D = 20 \) features and a varying number of instances \( N \in \{10^3, 10^4, 10^5\} \) (log scale).
+
+In Figure~\ref{fig:efficiency_nof_instances}, we observe that r-RHALE's execution time increases at a slower rate compared to r-ALE and r-PDP. r-RHALE is more than twice as fast as r-ALE and ten times faster than r-PDP. For large datasets, this means that r-RHALE executes 20 minutes and 2 hours faster compared to r-ALE and  r-PDP. The efficiency gain would be even more pronounced with a heavier black-box model, as demonstrated in the previous example.
+
+
+\section{Correlated Features}
+\label{sec:correlated-features}
+
+In this example, we demonstrate that, unlike r-PDP, r-RHALE handles well tabular datasets with correlated features.
+
+We use the model \( y = 3x_1I_{x_3 > 0} - 3x_1I_{x_3 \leq 0} + x_3 \) with two different data-generating distributions. In the non-correlated setting, all variables are uniformly distributed, \( x_i \sim \mathcal{U}(-1,1) \). In the correlated setting, \( x_1 \) and \( x_2 \) maintain the same distributions, but \( x_3 = x_1 \).
+
+These two versions illustrate that r-PDP produces the same regional effect regardless of correlations, while r-RHALE accurately distinguishes between the two cases. We focus on the effect of \( x_1 \) on \( y \).
+
+\paragraph{Non-correlated setting.}
+
+The effect of \( x_1 \) arises from the interaction terms \( 3x_1I_{x_3>0} \) and \( 3x_1I_{x_3\leq0} \). The global effect will be \( 3x_1 \) when \( x_3 > 0 \) (half the time, given \( x_3 \sim \mathcal{U}(-1,1) \)) and \( -3x_1 \) when \( x_3 \leq 0 \) (the other half). This results in an overall zero global effect with high heterogeneity. By splitting into two subregions, \( x_3 > 0 \) and \( x_3 \leq 0 \), we obtain two regional effects, \( 3x_1 \) and \( -3x_1 \), each with zero heterogeneity.
+
+In Figure~\ref{fig:synthetic-1-uncorrelated}, both r-PDP and r-RHALE correctly identify the global effect. The global effect is zero but with high heterogeneity, indicated by the two red lines in the r-PDP plot (Figure~\ref{subfig:global_pdp}) and the red bars in the r-RHALE plot (Figure~\ref{subfig:global_rhale}). Due to space limitations, we do not illustrate the regional effects, which, in both cases, match the ground truth.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.235\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/simulation_1/uncor_global_pdp.png}
+        \caption{Global PDP ($x_1$)}
+        \label{subfig:global_pdp}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.235\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/simulation_1/uncor_global_rhale.png}
+        \caption{Global RHALE ($x_1$)}
+        \label{subfig:global_rhale}
+    \end{subfigure}
+    \caption{Global plots for the non-correlated setting.}
+    \label{fig:synthetic-1-uncorrelated}
+  \end{figure}
+
+\paragraph{Correlated setting.}
+
+In the correlated case, with \( x_3 = x_1 \), the effect becomes \( y = 3x_1I_{x_1 > 0} - 3x_1I_{x_1 \leq 0} \). This is because the interaction terms simplify to \( 3x_1I_{x_1 > 0} \) and \( -3x_1I_{x_1 \leq 0} \). When \( x_1 > 0 \), \( x_3 > 0 \), so only the \( 3x_1 \) term is active. Similarly, when \( x_1 \leq 0 \), \( x_3 \leq 0 \), making only the \( -3x_1 \) term active.
+
+In Figure~\ref{fig:synthetic-1-correlated}, we observe that only r-RHALE correctly estimates the global and regional effects. r-RHALE (Figure~\ref{subfig:global_rhale_correlated}) accurately computes the effect as \( 3x_1I_{x_1 > 0} - 3x_1I_{x_1 \leq 0} \) with no heterogeneity and does not identify subregions. In contrast, r-PDP (Figure~\ref{subfig:global_pdp_correlated}) treats the features as independent, resulting in the same global effect as in the uncorrelated case and incorrectly identifying subregions for \( x_3 > 0 \) and \( x_3 \leq 0 \).
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.235\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/simulation_1/cor_global_pdp.png}
+        \caption{Global PDP ($x_1$)}
+        \label{subfig:global_pdp_correlated}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.235\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/simulation_1/cor_global_rhale.png}
+        \caption{Global RHALE ($x_2$)}
+        \label{subfig:global_rhale_correlated}
+    \end{subfigure}
+    \caption{Global plots for the correlated setting.}
+    \label{fig:synthetic-1-correlated}
+  \end{figure}
+  
+\section{Demonstration}
+\label{sec:demonstration}
+
+In this section, we delve deeper into the example introduced in Section~\ref{sec:introduction}. The bike-sharing dataset~\cite{fanaee2014event} encompasses historical data on hourly bike rentals from 2011 to 2012 within the Capital bike share system, alongside relevant weather and seasonal information. The input features include year, month, day, hour, workday status, temperature, humidity, wind speed, and more, with the target variable being the number of bikes rented each hour.
+
+Our aim is to analyze this data to propose an optimal time for a promotional offer. The focus of our analysis is on the feature "hour" to determine the best time of day for the promotion. This method can be applied to other features as well.
+
+The proposed pipeline, depicted in Figure~\ref{fig:concept_figure}, comprises the following steps: first, we apply a neural network to the dataset. Subsequently, we use a regional effect method~\cite{herbinger2023decomposing, herbinger_repid_2022} to assess the impact of the "hour" feature on bike rentals. The analysis reveals that the influence of "hour" differs between weekdays and weekends. On weekdays (Figure~\ref{subfig:regional_a}), bike rentals peak around 8:30 AM and 5:00 PM, corresponding to commuting times. On weekends (Figure~\ref{subfig:regional_b}), rentals increase from 9:00 AM, peak at 12:00 PM, and decrease after 4:00 PM, reflecting recreational use.
+
+This finding aligns with common sense. The strength of the pipeline lies in its ability to automatically uncover such patterns without external input. Unlike traditional data analysis methods that require domain expertise to identify such subspaces, our approach use the machine learning to gain this knowledge from the complex patterns within the data. Then, r-RHALE explains this knowledge with one plot per significant subspace.
+
+\section{Conclusion and Future Work}
+
+In this paper, we introduce a novel method for extracting insights from tabular data. Our approach involves first fitting a black-box model and then explaining its predictions using a regional effect method. The insights gained from the regional effect can then be applied to support decision-making processes.
+
+To this end, we propose r-RHALE, an innovative regional effect method that builds upon the strengths of the global effect RHALE. r-RHALE offers significantly improved efficiency compared to existing methods and effectively handles datasets with correlated features.
+
+
+
+% \section{Core Structural Elements}
+
+% Nulla placerat feugiat augue, id blandit urna pretium nec. Nulla velit sem, tempor vel mauris ut, porta commodo quam. Donec lectus erat, sodales eu mauris eu, fringilla vestibulum nisl. Morbi viverra tellus id lorem faucibus cursus. Quisque et orci in est faucibus semper vel a turpis. Vivamus posuere sed ligula et. 
+
+% \subsection{Figures}
+
+% Aliquam justo ante, pretium vel mollis sed, consectetur accumsan nibh. Nulla sit amet sollicitudin est. Etiam ullamcorper diam a sapien lacinia faucibus. Duis vulputate, nisl nec tincidunt volutpat, erat orci eleifend diam, eget semper risus est eget nisl. Donec non odio id neque pharetra ultrices sit amet id purus. Nulla non dictum tellus, id ullamcorper libero. Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim. Cras fermentum facilisis elit vitae egestas. Nam vulputate est non tellus efficitur pharetra. Vestibulum ligula est, varius in suscipit vel, porttitor id massa. Nulla placerat feugiat augue, id blandit urna pretium nec. Nulla velit sem, tempor vel mauris ut, porta commodo quam \autoref{fig:duck}.
+
+% \begin{figure}
+%   \centering
+%   % \includegraphics[width=\linewidth]{figures/duck}
+%   \caption{An illustration of a Mallard Duck. Picture from Mabel Osgood Wright, \textit{Birdcraft}, published 1897.}
+%   \label{fig:duck}
+% \end{figure}
+
+% \begin{table*}[t]
+%   \caption{A double column table.}
+%   \label{tab:commands}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     A Wide Command Column & A Random Number & Comments\\
+%     \midrule
+%     \verb|\tabular| & 100& The content of a table \\
+%     \verb|\table|  & 300 & For floating tables within a single column\\
+%     \verb|\table*| & 400 & For wider floating tables that span two columns\\
+%     \bottomrule
+%   \end{tabular}
+% \end{table*}
+
+% \subsection{Tables}
+
+% Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim. Cras fermentum facilisis elit vitae egestas. Mauris porta, neque non rutrum efficitur, odio odio faucibus tortor, vitae imperdiet metus quam vitae eros. Proin porta dictum accumsan \autoref{tab:commands}.
+
+% Duis cursus maximus facilisis. Integer euismod, purus et condimentum suscipit, augue turpis euismod libero, ac porttitor tellus neque eu enim. Nam vulputate est non tellus efficitur pharetra. Aenean molestie tristique venenatis. Nam congue pulvinar vehicula. Duis lacinia mollis purus, ac aliquet arcu dignissim ac \autoref{tab:freq}. 
+
+% \begin{table}[hb]% h asks to places the floating element [h]ere.
+%   \caption{Frequency of Special Characters}
+%   \label{tab:freq}
+%   \begin{tabular}{ccl}
+%     \toprule
+%     Non-English or Math & Frequency & Comments\\
+%     \midrule
+%     \O & 1 in 1000& For Swedish names\\
+%     $\pi$ & 1 in 5 & Common in math\\
+%     \$ & 4 in 5 & Used in business\\
+%     $\Psi^2_1$ & 1 in 40\,000 & Unexplained usage\\
+%   \bottomrule
+% \end{tabular}
+% \end{table}
+
+% Nulla sit amet enim tortor. Ut non felis lectus. Aenean quis felis faucibus, efficitur magna vitae. Curabitur ut mauris vel augue tempor suscipit eget eget lacus. Sed pulvinar lobortis dictum. Aliquam dapibus a velit.
+
+% \subsection{Listings and Styles}
+
+% Aenean malesuada fringilla felis, vel hendrerit enim feugiat et. Proin dictum ante nec tortor bibendum viverra. Curabitur non nibh ut mauris egestas ultrices consequat non odio.
+
+% \begin{itemize}
+% \item Duis lacinia mollis purus, ac aliquet arcu dignissim ac. Vivamus accumsan sollicitudin dui, sed porta sem consequat.
+% \item Curabitur ut mauris vel augue tempor suscipit eget eget lacus. Sed pulvinar lobortis dictum. Aliquam dapibus a velit.
+% \item Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim.
+% \end{itemize}
+
+% Ut sagittis, massa nec rhoncus dignissim, urna ipsum vestibulum odio, ac dapibus massa lorem a dui. Nulla sit amet enim tortor. Ut non felis lectus. Aenean quis felis faucibus, efficitur magna vitae. 
+
+% \begin{enumerate}
+% \item Duis lacinia mollis purus, ac aliquet arcu dignissim ac. Vivamus accumsan sollicitudin dui, sed porta sem consequat.
+% \item Curabitur ut mauris vel augue tempor suscipit eget eget lacus. Sed pulvinar lobortis dictum. Aliquam dapibus a velit.
+% \item Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim.
+% \end{enumerate}
+
+% Cras fermentum facilisis elit vitae egestas. Mauris porta, neque non rutrum efficitur, odio odio faucibus tortor, vitae imperdiet metus quam vitae eros. Proin porta dictum accumsan. Aliquam dapibus a velit. Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim. Ut maximus mi id arcu ultricies feugiat. Phasellus facilisis purus ac ipsum varius bibendum.
+
+% \subsection{Math and Equations}
+
+% Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim. Cras fermentum facilisis elit vitae egestas. Nam vulputate est non tellus efficitur pharetra. Vestibulum ligula est, varius in suscipit vel, porttitor id massa. Cras facilisis suscipit orci, ac tincidunt erat.
+% \begin{equation}
+%   \lim_{n\rightarrow \infty}x=0
+% \end{equation}
+
+% Sed pulvinar lobortis dictum. Aliquam dapibus a velit porttitor ultrices. Ut maximus mi id arcu ultricies feugiat. Phasellus facilisis purus ac ipsum varius bibendum. Aenean a quam at massa efficitur tincidunt facilisis sit amet felis. 
+% \begin{displaymath}
+%   \sum_{i=0}^{\infty} x + 1
+% \end{displaymath}
+
+% Suspendisse molestie ultricies tincidunt. Praesent metus ex, tempus quis gravida nec, consequat id arcu. Donec maximus fermentum nulla quis maximus.
+% \begin{equation}
+%   \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
+% \end{equation}
+
+% Curabitur vitae nulla dapibus, ornare dolor in, efficitur enim. Cras fermentum facilisis elit vitae egestas. Nam vulputate est non tellus efficitur pharetra. Vestibulum ligula est, varius in suscipit vel, porttitor id massa. Cras facilisis suscipit orci, ac tincidunt erat.
+
+% \section{Citations}
+
+% Some examples of references. A paginated journal article~\cite{Abril07}, an enumerated journal article~\cite{Cohen07}, a reference to an entire issue~\cite{JCohen96}, a monograph (whole book) ~\cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)~\cite{Harel79}, a divisible-book such as an anthology or compilation~\cite{Editor00} followed by the same example, however we only output the series if the volume number is given~\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.), a chapter in a divisible book~\cite{Spector90}, a chapter in a divisible book in a series~\cite{Douglass98}, a multi-volume work as book~\cite{Knuth97}, an article in a proceedings (of a conference, symposium, workshop for example) (paginated proceedings article)~\cite{Andler79}, a proceedings article with all possible elements~\cite{Smith10}, an example of an enumerated proceedings article~\cite{VanGundy07}, an informally published work~\cite{Harel78}, a doctoral dissertation~\cite{Clarkson85}, a master's thesis~\cite{anisi03}, an finally two online documents or world wide web resources~\cite{Thornburg01, Ablamowicz07}.
+
+% \begin{acks}
+%  This work was supported by the [...] Research Fund of [...] (Number [...]). Additional funding was provided by [...] and [...]. We also thank [...] for contributing [...].
+% \end{acks}
+
+%\clearpage
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{regional_rhale.bib}
+
+\end{document}
+\endinput
