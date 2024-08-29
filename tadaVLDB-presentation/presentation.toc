@@ -1,8 +1,3 @@
-\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
-\beamer@subsectionintoc {1}{1}{Problem Statement}{3}{0}{1}
-\beamer@subsectionintoc {1}{2}{Proposed Pipeline}{5}{0}{1}
-\beamer@subsectionintoc {1}{3}{Regional RHALE - our contribution}{14}{0}{1}
-\beamer@sectionintoc {2}{Regional RHALE - advantages}{16}{0}{2}
-\beamer@subsectionintoc {2}{1}{It is fast}{17}{0}{2}
-\beamer@subsectionintoc {2}{2}{It treats well correlated features}{18}{0}{2}
-\beamer@sectionintoc {3}{Effector - Python package}{19}{0}{3}
+\beamer@sectionintoc {1}{ML + XAI $\rightarrow $ a good Data Analysis Pipeline (5')}{2}{0}{1}
+\beamer@sectionintoc {2}{RegionalRHALE: a good XAI choice (4')}{13}{0}{2}
+\beamer@sectionintoc {3}{\texttt {Effector} - a \texttt {Python} Package for Feature Effect (1')}{17}{0}{3}

@@ -57,9 +57,9 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
-\title[TaDA workshop - VLDB 2024]{TaDA workshop - VLDB 2024}
-\subtitle{Fast and accurate regional effect plots for automated tabular
+\title[RegionalRHALE - TaDA @ VLDB 2024]{Fast and accurate regional effect plots for automated tabular
 data analysis}
+\subtitle{TaDA Workshop @ VLDB 2024}
 \author[Gkolemis, Vasilis] % (optional)
 {Vasilis Gkolemis\inst{1,2} \and
   Christos Diou\inst{2} \and
@@ -96,13 +96,6 @@ data analysis}
     \tableofcontents[currentsection]
   \end{frame}
 }
-\AtBeginSubsection[]
-{
-  \begin{frame}
-    \frametitle{Program}
-    \tableofcontents[currentsubsection]
-  \end{frame}
-}
 
 
 % ------------------------------------------------------------
@@ -111,9 +104,7 @@ data analysis}
 %---------------------------------------------------------
 
 
-\section{Introduction}
-
-\subsection{Problem Statement}
+\section{ML + XAI $\rightarrow$ a good Data Analysis Pipeline (5')}
 
 \begin{frame}
   \frametitle{Problem Statement}
@@ -121,50 +112,46 @@ data analysis}
     \centering
     \includegraphics[width=\textwidth]{./figures/problem_statement.png}
   \end{figure}
-  \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  I will try to convince you for 4 things!
 \end{frame}
 
-\subsection{Proposed Pipeline}
-
 \begin{frame}
-  \frametitle{Discussion point 1}
+  \frametitle{Idea 1}
   \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{./figures/convincing_point_1.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  Black box ML model + XAI = a good pipeline!
+  Black box ML model + XAI = a Data Analysis pipeline!
 \end{frame}
 
 \begin{frame}
-  \frametitle{Discussion point 2}
+  \frametitle{Idea 2}
   \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{./figures/convincing_point_2.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  Black box ML model + Global effect methods = a good pipeline!
+  Global effects is a good XAI choice!
 \end{frame}
 
 \begin{frame}
-  \frametitle{Discussion point 3}
+  \frametitle{Idea 3}
   \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{./figures/convincing_point_3.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  Black box ML model + Regional effect methods = a better pipeline!
+  Regional effects is a better XAI choice!
 \end{frame}
 
 \begin{frame}
-  \frametitle{Discussion point 4}
+  \frametitle{Idea 4}
   \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{./figures/convincing_point_4.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  Black box ML model + Regional RHALE = an even better pipeline!
+  Use RegionalRHALE if the black box model is differentiable!
 \end{frame}
 
 % \begin{frame}
@@ -206,7 +193,7 @@ data analysis}
       \end{itemize}
     \end{itemize}
   \item Decision Making: \red{decide a discount policy}
-  \item Data Understanding: confirm/reject some ideas about bike rentals
+  \item Data Understanding: how bike rental market works
   \end{itemize}
 \end{frame}
 
@@ -244,7 +231,7 @@ data analysis}
     \includegraphics[width=0.45\textwidth]{./figures/bike_sharing_global_rhale_heterogeneity.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  RHALE paper~\citep{gkolemis2023rhale}: ALE + heterogeneity
+  PDP and RHALE~\citep{gkolemis2023rhale} are global effect methods
 \end{frame}
 
 \begin{frame}
@@ -256,10 +243,9 @@ data analysis}
     \includegraphics[width=0.33\textwidth]{./figures/bike_sharing_regional_pdp_weekends.png}
   \end{figure}
   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-  REPID Paper~\citep{herbinger_repid_2022}
+  Regional PDP~\citep{herbinger_repid_2022}
 \end{frame}
 
-\subsection{Regional RHALE - our contribution}
 \begin{frame}
   \frametitle{Regional Effect: Regional-RHALE}
   \begin{figure}[ht]
@@ -272,275 +258,65 @@ data analysis}
   Regional RHALE - our proposal!
 \end{frame}
 
-\section{Regional RHALE - advantages}
-
-\subsection{It is fast}
-
-\subsection{It treats well correlated features}
-
-\section{Effector - Python package}
-
-% \section{\texttt{Effector}}
-
-% \begin{frame}
-%   \frametitle{Why \texttt{Effector}?}
-%   \begin{itemize}
-%   \item Regional Methods
-%   \item Fast
-%   \item Integrates with all frameworks
-%   \item Common API between methods
-%   \item Progressive disclosure of complexity
-%   \item Extensible
-%   \end{itemize}
-% \end{frame}
-
-% \subsection{Regional Methods}
-% \begin{frame}
-%   \frametitle{Regional Methods}
-%   \begin{itemize}
-%   \item only package with regional effect methods
-%   \end{itemize}
-%   \begin{figure}
-%     \centering
-%     \includegraphics[width=0.8\textwidth]{./figures/effector_comparison.png}
-%   \end{figure}
-%   \begin{itemize}
-%   \item will keep being updated with novel methods!
-%   \end{itemize}
-% \end{frame}
-
-% \subsection{Fast}
-% \begin{frame}
-%   \frametitle{Fast}
-%   \begin{figure}[ht]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{./figures/efficiency_comparison.png}
-%     \caption{ALE-based plots on bike-sharing dataset}
-%     \end{figure}
-%   \noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
-%   \begin{itemize}
-%   \item RHALE is a very fast method
-%   \item \texttt{Effector} focuses on efficiency $\rightarrow$ regional methods
-%   \end{itemize}
-% \end{frame}
-
-% \subsection{Integrates with all frameworks}
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: Scikit-learn}
-
-% \begin{lstlisting}[language=Python]
-% import effector
-% from sklearn.ensemble import RandomForestRegressor
-
-% # X = ... # input data
-% # y = ... # target data
-
-% model = RandomForestRegressor()
-% model.fit(X, y)
-
-% def f(X):
-%   return model.predict(X)
-
-% # global effect
-% effector.PDP(X, f).plot(feature=0)
-
-% # regional effect
-% effector.RegionalPDP(X, f).plot(feature=0, node_idx=0)
-% \end{lstlisting}
-% \end{frame}
-
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: Tensorflow - (i)}
-
-% \begin{lstlisting}[language=Python]
-% import effector
-% import tensorflow as tf
-
-% # X = ... # input data
-% # y = ... # target data
-
-% # define model
-% model = tf.keras.Sequential([
-%   tf.keras.layers.Dense(10, activation='relu'),
-%   tf.keras.layers.Dense(1)
-% ])
-
-% # train model
-% model.compile(optimizer='adam', loss='mse')
-% model.fit(X, y, epochs=10)
-% \end{lstlisting}
-% \end{frame}
-
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: Tensorflow - (ii)}
-
-% \begin{lstlisting}[language=Python]
-% def f(X):
-%   return model.predict(X)
-
-% def f_jac(X):
-%     X = tf.convert_to_tensor(X, dtype=tf.float32)
-%     with tf.GradientTape() as tape:
-%         tape.watch(X)
-%         y = model(X)
-%     return tape.gradient(y, X).numpy()
-
-% # global effect
-% effector.RHALE(X, f, f_jac).plot(feature=0)
-
-% # regional effect
-% effector.RegionalRHALE(X, f, f_jac).plot(feature=0, node_idx=0)
-% \end{lstlisting}
-% \end{frame}
-
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: PyTorch - (i)}
-
-% \begin{lstlisting}[language=Python]
-% import effector
-% import torch
-% import torch.nn as nn
-
-% # X = ... # input data
-% # y = ... # target data
-
-% class Net(nn.Module):
-%   def __init__(self):
-%     super(Net, self).__init__()
-%     self.fc1 = nn.Linear(D, 10)
-%     self.fc2 = nn.Linear(10, 1)
-
-%   def forward(self, x):
-%     x = self.fc1(x)
-%     x = self.fc2(x)
-%     return x
-
-% model = Net()
-% \end{lstlisting}
-% \end{frame}
-
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: PyTorch - (ii)}
-
-% \begin{lstlisting}[language=Python]
-% # train model
-% optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
-% criterion = nn.MSELoss()
-% for epoch in range(10):
-%   optimizer.zero_grad()
-%   y_pred = model(X)
-%   loss = criterion(y_pred, y)
-%   loss.backward()
-%   optimizer.step()
-% \end{lstlisting}
-% \end{frame}
-
-% \begin{frame}[fragile]
-% \frametitle{\texttt{Effector} is simple: PyTorch - (iii)}
-
-% \begin{lstlisting}[language=Python]
-% def f(X):
-%     return model(torch.tensor(X, dtype=torch.float32)).detach().numpy()
-
-% def f_jac(X):
-%     X = torch.tensor(X, dtype=torch.float32)
-%     X.requires_grad = True
-%     y = model(X)
-%     return torch.autograd.grad(y, X)[0].numpy()
-
-% # global effect
-% effector.RHALE(X, f, f_jac).plot(feature=0)
-
-% # regional effect
-% effector.RegionalRHALE(X, f, f_jac).plot(feature=0, node_idx=0)
-% \end{lstlisting}
-% \end{frame}
-
-% \subsection{Common API between methods}
-% \begin{frame}[fragile]
-% \frametitle{Common API between methods}
-% \begin{lstlisting}[language=Python]
-% # global effect
-% effector.PDP(X, f).plot(feature=i)
-% effector.RHALE(X, f, f_jac).plot(feature=i)
-% effector.SHAPDP(X, f).plot(feature=i)
-
-
-% # regional effect
-% effector.RegionalPDP(X, f).plot(feature=i, node_idx=0)
-% effector.RegionalRHALE(X, f, f_jac).plot(feature=i, node_idx=0)
-% effector.RegionalSHAPDP(X, f).plot(feature=i, node_idx=0)
-% \end{lstlisting}
-% \end{frame}
-
-% \subsection{Progressive disclosure of complexity}
-% \begin{frame}
-% \frametitle{Progressive disclosure of complexity}
-% \begin{figure}
-%   \centering
-%     \includegraphics[width=0.9\textwidth]{./figures/effector_disclosure_complexity.png}
-% \end{figure}
-% \end{frame}
-
-
-% \subsection{Extensible}
-% \begin{frame}
-%   \frametitle{Extensibility}
-%   \begin{itemize}
-%   \item Effector is designed to maximize extensibility
-%   \item library is structured around a set of abstractions
-%   \item one can easily create a novel ALE-based method
-%     \begin{itemize}
-%     \item subclass \texttt{ALEBase} class
-%     \item redefine the \texttt{.fit()} and/or \texttt{.plot()}
-%     \end{itemize}
-%   \end{itemize}
-% \end{frame}
-
-% \section{Future Directions}
-
-% \begin{frame}
-%   \frametitle{Future directions}
-%   \begin{itemize}
-%   \item On the road to \texttt{v.1}
-%     \begin{itemize}
-%     \item test, robustify, get feedback
-%     \item complete documentation
-%     \item add more real-world examples
-%     \end{itemize}
-%   \item Novel Features
-%   \begin{itemize}
-%   \item Faster implementation of SHAP-DP
-%     \begin{itemize}
-%     \item current regional version is prohibitively slow
-%     \end{itemize}
-%   \item Integration of Regionally Additive Models~\citep{gkolemis2023regionally}
-%     \begin{itemize}
-%     \item Use subregions to fit an x-by-design model
-%     \item RAM $=$ GAM on subregions
-%     \end{itemize}
-%   \item Benchmark datasets
-%     \begin{itemize}
-%     \item There is not a single ground truth!
-%     \item Design datasets with desiderata
-%     \item compare methods
-%     \end{itemize}
-%   \end{itemize}
-% \item Get feedback from the community
-% \end{itemize}
-% \end{frame}
+\section{RegionalRHALE: a good XAI choice (4')}
 
 \begin{frame}
-  \frametitle{Thank You!}
+  \frametitle{RegionalRHALE - How it works (a)}
   \begin{itemize}
-  \item If you find this package useful, we would appreciate your feedback and a star on GitHub
-  \item \href{https://arxiv.org/abs/2404.02629}{https://arxiv.org/abs/2404.02629}
-  \item \href{https://github.com/givasile/effector}{https://github.com/givasile/effector}
-  \item \href{https://xai-effector.github.io/}{https://xai-effector.github.io/}
+  \item RHALE plot~\citep{gkolemis2023rhale}
+  \item red bars express the heterogeneity
   \end{itemize}
-
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{./figures/bike_sharing_global_rhale_heterogeneity.png}
+  \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Regional RHALE - How it works (b)}
+  \begin{itemize}
+  \item iterate over all other features
+  \item select the split with the maximum heterogeneity reduction
+  \end{itemize}
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.49\textwidth]{./figures/bike_sharing_regional_rhale_workingdays.png}
+    \includegraphics[width=0.49\textwidth]{./figures/bike_sharing_regional_rhale_weekends.png}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Regional RHALE is fast}
+  \begin{itemize}
+  \item iterating over all other features $\rightarrow$ is slow
+  \item needs fast evaluation of the heterogeneity
+  \item if model is differentiable, regional RHALE is very fast
+  \item regional RHALE treats well cases with correlated features
+  \end{itemize}
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{./figures/simulation_2/efficiency_samples.png}
+    \includegraphics[width=0.45\textwidth]{./figures/simulation_2/efficiency_layers.png}
+  \end{figure}
+\end{frame}
+
+\section{\texttt{Effector} - a \texttt{Python} Package for Feature Effect (1')}
+
+\begin{frame}
+  \frametitle{\texitt{Effector} - a \textt{Python} package for feature effect}
+  \begin{itemize}
+  \item Implements:
+    \begin{itemize}
+    \item many global effect methods (PDP, RHALE, SHAP-DP)
+    \item many regional effect methods (regionalPDP, regionalRHALE, regionalSHAP-DP)
+    \end{itemize}
+  \item Work in progress
+  \item If you are interested, please use it and give feedback
+  \item Source: \href{https://github.com/givasile/effector}{https://github.com/givasile/effector}
+  \item Documentation: \href{https://xai-effector.github.io/}{https://xai-effector.github.io/}
+    \end{itemize}
+\end{frame}
 
 
 \begin{frame}[allowframebreaks]
